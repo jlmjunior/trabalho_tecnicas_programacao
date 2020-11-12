@@ -1,0 +1,12 @@
+#COMPROVANTE#
+
+Thu Nov 12 16:52:13 2020
+
+CPF Cliente: 123
+
+Codigo: 1
+Nome do produto: Ibuprofeno
+Tarifa: R$ 10.99
+--------------------------------------------------------------
+
+Tarifa total: R$ 10.99
