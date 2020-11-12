@@ -1,5 +1,0 @@
-1,10/05/2020,10/08/2022,Fabricante42,Ibuprofeno,10.99
-2,06/07/2020,06/11/2021,Fabricante10,Aspirina,4.99
-3,25/04/2020,25/04/2023,Fabricante10,Dorflex,16.20
-4,06/09/2020,07/09/2023,Fabricante1,Neosaldina,17.60
-5,09/05/2019,09/04/2023,Fabricante1,Angeliq,80.99
