@@ -1,4 +1,4 @@
-# Farmácia
+# Gestão de Farmácia
 
 Disciplina: Técnicas de programação
 
