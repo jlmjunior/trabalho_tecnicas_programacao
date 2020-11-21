@@ -40,8 +40,8 @@ typedef struct
     char nomeProduto[45] = "\0";
     char cpf[20] = "\0";
 
-} infoCarrinho;
-       
+} infoCarrinho;     
+
 typedef struct nodoCarrinho
 {
     infoCarrinho info;    

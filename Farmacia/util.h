@@ -365,7 +365,40 @@ void LimparCarrinho(carrinho* *listaCarrinho)
 	}      
 }
 
-void FinalizarCompra(carrinho* *listaCarrinho, produto* *listaProdutos)
+void AdicionarVendido(carrinho* *listaVendidos, infoCarrinho produto)
+{
+    carrinho *no = (carrinho*) malloc (sizeof(carrinho));
+
+    if (no != NULL)
+    {
+        no->info.codigoProduto = produto.codigoProduto;
+        no->info.precoProduto = produto.precoProduto;
+        strcpy(no->info.nomeProduto, produto.nomeProduto);
+        strcpy(no->info.cpf, produto.cpf);
+
+        no->prox = NULL;
+
+        if (*listaVendidos == NULL) 
+        {
+            *listaVendidos = no;
+        }
+        else
+        {
+            carrinho *aux = *listaVendidos;
+
+            while (aux->prox != NULL)
+                aux = aux->prox;
+            
+            aux->prox = no;
+        }
+    }
+    else 
+    {
+
+    }
+}
+
+void FinalizarCompra(carrinho* *listaCarrinho, produto* *listaProdutos, carrinho* *listaVendidos)
 {
     carrinho *auxCarrinho = *listaCarrinho;
 
@@ -379,8 +412,9 @@ void FinalizarCompra(carrinho* *listaCarrinho, produto* *listaProdutos)
 
         while (auxCarrinho != NULL)
         {
+            AdicionarVendido(listaVendidos, auxCarrinho->info);
             ExcluirProduto(listaProdutos, auxCarrinho->info.codigoProduto);
-
+            
             auxCarrinho = auxCarrinho->prox;
         }
 

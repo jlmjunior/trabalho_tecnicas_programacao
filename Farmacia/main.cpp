@@ -12,8 +12,9 @@ void CadastrarCliente(cliente* *listaClientes);
 void CadastrarProduto(produto* *listaProdutos);
 void ImprimeClientes(cliente *listaClientes);
 void ImprimeProdutos(produto *listaProdutos);
+void ImprimeVendidos(carrinho *listaVendidos);
 void CarregarProdutos(produto* *listaProdutos);
-void VenderProduto(produto* *listaProdutos, cliente *listaClientes);
+void VenderProduto(produto* *listaProdutos, cliente *listaClientes, carrinho* *listaVendidos);
 void CadastrarServico(servico* *listaServicos);
 void ExecutarServico(servico *listaServicos);
 void VerFaturamento();
@@ -24,6 +25,7 @@ int main()
     cliente *listaClientes = NULL;
     produto *listaProdutos = NULL;
     servico *listaServicos = NULL;
+    carrinho *listaVendidos = NULL;
 
     int menu;
 
@@ -41,6 +43,7 @@ int main()
         puts("[7] Executar Servico");
         puts("[8] Ver Faturamento");
         puts("[9] Imprimir Produtos de maior valor");
+        puts("[10] Imprime Vendidos");
         puts("[0] Sair");
 
         printf("\n[-]: ");
@@ -69,7 +72,7 @@ int main()
                 ImprimeProdutos(listaProdutos);
                 break;
             case 5:
-                VenderProduto(&listaProdutos, listaClientes);
+                VenderProduto(&listaProdutos, listaClientes, &listaVendidos);
                 break;
             case 6:
                 CadastrarServico(&listaServicos);
@@ -82,6 +85,9 @@ int main()
                 break;
             case 9:
                 ImprimeProdutosPorValor(listaProdutos);
+                break;
+            case 10:
+                ImprimeVendidos(listaVendidos);
                 break;
                 
             default:
@@ -323,7 +329,7 @@ void ImprimeProdutos(produto *listaProdutos)
     system("cls");
 }
 
-void VenderProduto(produto* *listaProdutos, cliente *listaClientes)
+void VenderProduto(produto* *listaProdutos, cliente *listaClientes, carrinho* *listaVendidos)
 {
     if (*listaProdutos == NULL)
     {
@@ -364,7 +370,7 @@ void VenderProduto(produto* *listaProdutos, cliente *listaClientes)
                         AdicionarAoCarrinho(&listaCarrinho, *listaProdutos, cpf);
                         break;
                     case 2:
-                        FinalizarCompra(&listaCarrinho, listaProdutos);
+                        FinalizarCompra(&listaCarrinho, listaProdutos, listaVendidos);
                         break;
                     case 9:
                         continuarMenu = false;
@@ -568,6 +574,31 @@ void ImprimeProdutosPorValor(produto *listaProdutos)
     }
     
     puts("");
+    system("pause");
+    system("cls");
+}
+
+void ImprimeVendidos(carrinho *listaVendidos)
+{
+    if (listaVendidos == NULL)
+    {
+        puts("[NENHUM PRODUTO VENDIDO]\n");
+    }
+    else
+    {
+        while (listaVendidos != NULL)
+        {
+            puts("----------------------------------------------------");
+            printf("\nNome: %s", listaVendidos->info.nomeProduto);
+            printf("\nPreco: %.2f\n", listaVendidos->info.precoProduto);
+            puts("");
+
+            listaVendidos = listaVendidos->prox;
+        }
+
+        puts("----------------------------------------------------");
+    }
+
     system("pause");
     system("cls");
 }
